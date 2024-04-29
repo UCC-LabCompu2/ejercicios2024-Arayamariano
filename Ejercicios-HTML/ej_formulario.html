@@ -20,14 +20,14 @@
 <h3>Suscribase a Nuestro Portal de Noticias! Crear una cuenta es rápido!</h3>
 <form id="Formulario_subscripcion">
     <p>
-        Nombre: <input type="text" name="nombre" placeholder="Nombre">
+       <label for="nombre">Nombre:</label> <input type="text" name="nombre" placeholder="Nombre" id="nombre">
     </p>
     <p>
-        Apellido:<input type="text" name="apellido" placeholder="Apellido">
+        <label for="apellido">Apellido:</label><input type="text" name="apellido" placeholder="Apellido" id="apellido">
     </p>
     <p>
-        Sexo: Masculino<input type="radio" name="genero" value="masculino">
-        Femenino <input type="radio" name="genero" value="femenino">
+        Sexo: <label for="masculino">Masculino</label><input type="radio" name="genero" value="masculino" id="masculino">
+        <label for="femenino">Femenino</label> <input type="radio" name="genero" value="femenino" id="femenino">
     </p>
     <p>
         Edad: <input type="number" name="edad" placeholder="Edad">
@@ -45,9 +45,9 @@
         Confirmar Password: <input type="password" name="confirmar" placeholder="Contraseña">
     </p>
     <p>
-        Tipo de servicio: Free<input type="checkbox" name="tipo_servicio" value="free">/
-        Standard <input type="checkbox" name="tipo_servicio" value="standard"> /
-        Premium <input type="checkbox" name="tipo_servicio" value="premium">
+        Tipo de servicio:<label for="free">Free</label><input type="checkbox" name="tipo_servicio" value="free" id="free">/
+        <label for="standard">Standard</label><input type="checkbox" name="tipo_servicio" value="standard" id="standard"> /
+        <label for="premium"> Premium </label><input type="checkbox" name="tipo_servicio" value="premium" id="premium">
     </p>
     <p>
         Tema:
