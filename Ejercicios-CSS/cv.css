@@ -1,0 +1,22 @@
+div{
+    border: 2px solid #000000;
+    padding: 15px;
+    margin: 10px 40px 5px;
+    background-color: rgba(114, 200, 176, 0.2);
+    border-radius: 10px;
+    box-shadow: 2px 4px black;
+}
+#logo{
+    width: 90px;
+    height: 90px;
+    float: left;
+    border-radius: 50%;
+}
+.cv{
+    text-align:  center;
+    background: linear-gradient(to right, rgba(111, 135, 185, 0.5), rgba(255, 255, 255, 0.5));
+}
+h1,h2,h3,h4{
+    font-family: "Sedan", serif;
+    text-shadow: 4px 1px rgba(1, 0, 0, 0.25);
+}
