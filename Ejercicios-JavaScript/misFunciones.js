@@ -79,7 +79,7 @@ var bandera;
 
 function dibujar(event) {
     const canvas = document.getElementById("lienzo");
-    const ctx = canva.getContext("2d");
+    const ctx = canvas.getContext("2d");
 
     let posx = event.clientX;
     let posy = event.clientY;
@@ -103,4 +103,54 @@ function dibujar(event) {
 function limpiarCanvas() {
     const canvas = document.getElementById("lienzo");
     canvas.width = canvas.width;
+}
+
+/**
+ * Dinuja una linea en la posicion que determina el usuario con el mouse
+ * @method dibujarCuadriculado
+ */
+function dibujarCuadriculado() {
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+
+    const alturamaxima = canvas.height;
+    const anchomaximo = canvas.width;
+    const paso = 20;
+
+    for (let i = paso; i < alturamaxima;) {
+        ctx.beginPath();
+        ctx.moveTo(0, i);
+        ctx.lineTo(anchomaximo, i);
+        ctx.strokeStyle = "#585555";
+        ctx.stroke();
+        ctx.closePath();
+        i = i + paso;
+    }
+
+    for (let i = paso; i < anchomaximo;) {
+        ctx.beginPath();
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i, alturamaxima);
+        ctx.strokeStyle = "#585555";
+        ctx.stroke();
+        ctx.closePath();
+        i = i + paso;
+    }
+
+    ctx.strokeStyle = "#3e0565";
+    //Eje X
+    ctx.beginPath();
+    ctx.moveTo(0, alturamaxima/2);
+    ctx.lineTo(0, anchomaximo);
+    ctx.stroke();
+    ctx.closePath();
+
+    //Eje Y
+    ctx.beginPath();
+    ctx.moveTo(anchomaximo/2, 0);
+    ctx.lineTo(alturamaxima, 0);
+    ctx.stroke();
+    ctx.closePath();
+
 }
