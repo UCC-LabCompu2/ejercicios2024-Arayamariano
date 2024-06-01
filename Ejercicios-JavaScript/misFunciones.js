@@ -30,11 +30,69 @@ function cambiarUnidades(id, valor) {
     }
 }
 
+
 /**
- * Conversion de unidades, de metros, pulgadas, pies y yardas
+ * Conversion de unidades, de metros, pulgadas, pies y yardas con otro tipo de funcion
  * @method cambiarUnidades
  * @param {string} id //El id de los inputs de metros, pulgadas, pies y yardas
  * @param {number} valor //El valor de los inputs de metros, pulgadas, pies y yardas
+ */
+convertirUnidades = (id, valor) => {
+    let met, pul, pie, yar;
+    if (valor.includes(",")) {
+        valor = valor.replace(",", ".")
+    }
+    if (isNaN(valor)) {
+        alert("El valor ingresado es incorrecto");
+        met = "";
+        pul = "";
+        pie = "";
+        yar = "";
+    } else if (id === "metro") {
+        met = valor;
+        pul = valor * 39.3701;
+        pie = valor * 3.28084;
+        yar = valor * 1.09361;
+    } else if (id === "pulgada") {
+        met = valor * 0.0254;
+        pul = valor;
+        pie = valor * 0.83333;
+        yar = valor * 0.0277778;
+    } else if (id === "pie") {
+        met = valor * 0.3048;
+        pul = valor * 12;
+        pie = valor;
+        yar = valor * 0.333333;
+    } else if (id === "yarda") {
+        met = valor * 0.9144;
+        pul = valor * 36;
+        pie = valor * 3;
+        yar = valor;
+    }
+    document.lasUnidades.unid_metro.value = Math.round(met * 100) / 100;
+    document.lasUnidades.unid_pulgada.value = Math.round(pul * 100) / 100;
+    document.lasUnidades.unid_pie.value = Math.round(pie * 100) / 100;
+    document.lasUnidades.unid_yarda.value = Math.round(yar * 100) / 100;
+}
+
+function convertirGR(id) {
+    var grad, rad;
+    if (id == "grados") {
+        grad = document.getElementById("grados").value;
+        rad = (grad * Math.PI) / 180;
+    } else if (id == "radianes") {
+        rad = document.getElementById("radianes").value;
+        grad = (rad * 180) / Math.PI;
+    }
+    document.getElementById("grados").value = grad;
+    document.getElementById("radianes").value = rad;
+}
+
+
+/**
+ * Conversion de de grados a radianes
+ * @method convertirgr
+ * @param {string} id //El id de los inputs de grados y radianes
  */
 function convertirgr(id) {
     if (valor.includes(",")) {
@@ -53,30 +111,42 @@ function convertirgr(id) {
 }
 
 /**
- * Conversion de unidades, de metros, pulgadas, pies y yardas
- * @method cambiarUnidades
- * @param {string} id //El id de los inputs de metros, pulgadas, pies y yardas
- * @param {number} valor //El valor de los inputs de metros, pulgadas, pies y yardas
+ * Mostrar o ocultar un div
+ * @method mostrarOcultar
+ * @param {number} valorMo //El valor de los inputs de suma, resta, multiplicacion y division
  */
 let mostrarOcultar = (valorMO) => {
     if (valorMO == "val_mostrar") {
-        document.getElementById("divMO").style.display = block;
+        document.getElementById("divMO").style.display = 'block';
     } else if (valorMO == "val_ocultar") {
-        document.getElementById("divMO").style.display = none;
+        document.getElementById("divMO").style.display = 'none';
     }
 }
-
-/**
- * Conversion de unidades, de metros, pulgadas, pies y yardas
- * @method cambiarUnidades
- * @param {string} id //El id de los inputs de metros, pulgadas, pies y yardas
- * @param {number} valor //El valor de los inputs de metros, pulgadas, pies y yardas
- */
 let sumar = () => {
     let num1, num2;
     num1 = Number(document.getElementsByName("sum_num1")[0].value);
     num2 = Number(document.getElementsByName("sum_num2")[0].value);
     document.getElementsByName("sum_total")[0].innerHTML = num1 + num2;
+}
+let restar = () => {
+    let num1, num2;
+    num1 = Number(document.getElementsByName("res_num1")[0].value);
+    num2 = Number(document.getElementsByName("res_num2")[0].value);
+    document.getElementsByName("res_total")[0].innerHTML = num1 - num2;
+}
+let multiplicar = () => {
+    let num1, num2;
+    num1 = Number(document.getElementsByName("mul_num1")[0].value);
+    num2 = Number(document.getElementsByName("mul_num2")[0].value);
+    document.getElementsByName("mul_total")[0].innerHTML = num1 * num2;
+}
+
+
+let division = () => {
+    let num1, num2;
+    num1 = Number(document.getElementsByName("div_num1")[0].value);
+    num2 = Number(document.getElementsByName("div_num2")[0].value);
+    document.getElementsByName("div_total")[0].innerHTML = num1 / num2;
 }
 
 let pasarPagina = () => {
@@ -94,6 +164,12 @@ let cargarValores = () => {
     let cant
 }
 
+/**
+ * Dibujar circulo y cuadrado dentro de un canva
+ * @method dibujarCirculoCuadrado
+ * @param {string} id //El id de los inputs de metros, pulgadas, pies y yardas
+ * @param {number} valor //El valor de los inputs de metros, pulgadas, pies y yardas
+ */
 function dibujarCirculoCuadrado() {
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
