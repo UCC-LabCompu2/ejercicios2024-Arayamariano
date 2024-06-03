@@ -278,8 +278,25 @@ function dibujarCuadriculado() {
     ctx.lineTo(anchomaximo / 2, alturamaxima);
     ctx.stroke();
     ctx.closePath();
-}
 
+    //Escribir en el eje X
+    let numX = -20;
+    ctx.font = "10pt Verdana";
+    ctx.fillStyle = "#ff0000";
+    for (let i = 0; i < anchomaximo;) {
+        ctx.fillText(string(numX), i, alturamaxima / 2);
+        i += paso;
+        numX++;
+    }
+    let numY = -15;
+    ctx.font = "10pt Verdana";
+    ctx.fillStyle = "#ff0000";
+    for (let i = 0; i < anchomaximo;) {
+        ctx.fillText(string(numX), i, alturamaxima / 2);
+        i += paso;
+        numX++;
+    }
+}
 
 function dibujarImagen(posX, posY) {
     const canvas = document.getElementById("myCanvas");
@@ -291,7 +308,78 @@ function dibujarImagen(posX, posY) {
 
     const img = new Image();
     img.src = "images/auto.png";
-    img.onload = function (){
+
+    if (posX < 0 || posY < 0) {
+        mostrarDialog();
+    } else if (posX > canvas.width || posY > canvas.height) {
+        mostrarDialog();
+    }
+    img.onload = function () {
         ctx.drawImage(img, posX, posY);
     }
+}
+
+function mostrarDialog() {
+    const dialog = document.getElementById("myDialog");
+    dialog.showModal();
+}
+
+function cerrarDialog() {
+    const dialog = document.getElementById("myDialog");
+    dialog.close();
+}
+
+x = 0;
+dx = 2; // Cantidad de pixeles que se mueve el elemento
+
+function animarAuto() {
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+    const img = new Image();
+    img.src = "images/auto.png";
+    img.onload = function () {
+        canvas.width = canvas.width;
+        ctx.drawImage(img, x, 100);
+    }
+    x += dx;
+    if (x > canvas.width) {
+        x = 0;
+    }
+}
+
+var intervalId;
+function comenzarAnimacion(){
+    intervalId = setInterval(animarAuto,15); //Le asigno a la variable globla
+    setTimeout(detenerAuto, 6000);
+}
+
+function detenerAuto(){
+    clearInterval(intervalId);
+}
+
+var animarID;
+function animarAutoNuevo(){
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+    const img = new Image();
+    img.src = "images/auto.png";
+    img.onload = function () {
+        canvas.width = canvas.width;
+        ctx.drawImage(img, x, 100);
+        requestAnimationFrame(animarAutoNuevo);
+        animarID = requestAnimationFrame(animarID);
+    }
+    x += dx;
+    if (x > canvas.width) {
+        x = 0;
+    }
+}
+
+function animarNuevo(){
+    setTimeout(cancelarNuevaAnimacion,6000);
+    requestAnimationFrame(animarAutoNuevo);
+}
+
+function cancelarNuevaAnimacion(){
+    cancelAnimationFrame(animarID); // Cancelar la animación utilizando el ID almacenado
 }
