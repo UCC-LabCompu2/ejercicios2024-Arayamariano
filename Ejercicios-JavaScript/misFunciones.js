@@ -244,7 +244,7 @@ function dibujarCuadriculado() {
     const alturamaxima = canvas.height;
     const anchomaximo = canvas.width;
     const paso = 20;
-
+    //Dinujo de lineas horizontales
     for (let i = paso; i < alturamaxima;) {
         ctx.beginPath();
         ctx.moveTo(0, i);
@@ -254,6 +254,7 @@ function dibujarCuadriculado() {
         ctx.closePath();
         i = i + paso;
     }
+    //Dibujo de lineas verticales
     for (let i = paso; i < anchomaximo;) {
         ctx.beginPath();
         ctx.moveTo(i, 0);
@@ -263,18 +264,34 @@ function dibujarCuadriculado() {
         ctx.closePath();
         i = i + paso;
     }
-    ctx.strokeStyle = "#3e0565";
+    ctx.strokeStyle = "#a24cdf";
     //Eje X
     ctx.beginPath();
     ctx.moveTo(0, alturamaxima / 2);
-    ctx.lineTo(0, anchomaximo);
+    ctx.lineTo(anchomaximo, alturamaxima / 2);
     ctx.stroke();
     ctx.closePath();
 
     //Eje Y
     ctx.beginPath();
     ctx.moveTo(anchomaximo / 2, 0);
-    ctx.lineTo(alturamaxima, 0);
+    ctx.lineTo(anchomaximo / 2, alturamaxima);
     ctx.stroke();
     ctx.closePath();
+}
+
+
+function dibujarImagen(posX, posY) {
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    console.log(posX, posY);
+
+    canvas.width = canvas.width; //Para eliminar el canva anterior
+
+    const img = new Image();
+    img.src = "images/auto.png";
+    img.onload = function (){
+        ctx.drawImage(img, posX, posY);
+    }
 }
