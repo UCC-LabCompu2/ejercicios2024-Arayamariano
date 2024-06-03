@@ -366,8 +366,7 @@ function animarAutoNuevo(){
     img.onload = function () {
         canvas.width = canvas.width;
         ctx.drawImage(img, x, 100);
-        requestAnimationFrame(animarAutoNuevo);
-        animarID = requestAnimationFrame(animarID);
+        animarID = requestAnimationFrame(animarAutoNuevo);
     }
     x += dx;
     if (x > canvas.width) {
