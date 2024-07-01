@@ -149,19 +149,20 @@ let division = () => {
     document.getElementsByName("div_total")[0].innerHTML = num1 / num2;
 }
 
-let pasarPagina = () => {
-    let cant, unid, urlcomp;
-    cant = document.getElementById("distancia").value;
-    unid = document.getElementsByName("unidades")[0].value;
-    console.log(cant)
-    console.log(unid)
-    urlcomp = "segundaweb.html#" + cant + "#" + unid;
-    window.open(urlcomp);
-
+function guardarLocalStorage(){
+    let distancia,unidad;
+    distancia = document.getElementById("distancia").value;
+    unidad = document.getElementsByName('unidades')[0].value;
+    localStorage.setItem('distanciaLS', distancia);
+    localStorage.setItem('unidadesLS', unidad);
+    window.open('2_web.html');
 }
 
-let cargarValores = () => {
-    let cant
+function cargarLocalStorage(){
+    let cant, un;
+    cant = localStorage.getItem('distanciaLS');
+    un = localStorage.getItem('unidadesLS');
+    document.getElementById('dist').value = cant + " " + un;
 }
 
 /**
