@@ -197,12 +197,6 @@ function cargarlisteners() {
 
 var bandera;
 
-/**
- * Conversion de unidades, de metros, pulgadas, pies y yardas
- * @method cambiarUnidades
- * @param {string} id //El id de los inputs de metros, pulgadas, pies y yardas
- * @param {number} valor //El valor de los inputs de metros, pulgadas, pies y yardas
- */
 function dibujar(event) {
     const canvas = document.getElementById("lienzo");
     const ctx = canvas.getContext("2d");
@@ -223,12 +217,6 @@ function dibujar(event) {
     }
 }
 
-/**
- * Conversion de unidades, de metros, pulgadas, pies y yardas
- * @method cambiarUnidades
- * @param {string} id //El id de los inputs de metros, pulgadas, pies y yardas
- * @param {number} valor //El valor de los inputs de metros, pulgadas, pies y yardas
- */
 function limpiarCanvas() {
     const canvas = document.getElementById("lienzo");
     canvas.width = canvas.width;
